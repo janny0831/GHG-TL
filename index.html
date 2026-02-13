@@ -51,7 +51,7 @@
             </div>
             <div>
                 <h1 class="text-xl font-black text-slate-800 tracking-tight">大量科技排放計算系統</h1>
-                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Standard Inventory Report v6.0</p>
+                <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Standard Inventory Report v1.0</p>
             </div>
         </div>
         <div class="flex gap-2 bg-slate-100 p-1.5 rounded-2xl">
@@ -70,44 +70,71 @@
     <main class="flex-1 overflow-y-auto p-8">
         <!-- 儀表板 -->
         <div id="tab-dashboard" class="tab-content active max-w-6xl mx-auto space-y-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
-                <div class="bg-white p-6 rounded-3xl shadow-sm border-l-8 border-slate-900 flex justify-between items-start">
+            <!-- 頂部總覽卡片 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="bg-indigo-600 p-6 rounded-[32px] shadow-lg shadow-indigo-100 border-l-8 border-indigo-400 flex justify-between items-center text-white">
                     <div>
-                        <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">總排放量</h4>
-                        <div class="flex items-baseline gap-1"><span id="total-val" class="text-2xl font-black text-slate-800 tracking-tighter">0.000</span><span class="text-[10px] font-bold text-slate-400">tCO2e</span></div>
+                        <h4 class="text-lg font-black opacity-80 uppercase tracking-widest mb-1">總排放量 (範疇 1+2+3)</h4>
+                        <div class="flex items-baseline gap-2">
+                            <span id="total-val" class="text-4xl font-black tracking-tighter">0.000</span>
+                            <span class="text-lg font-bold opacity-70">tCO2e</span>
+                        </div>
                     </div>
-                    <div class="p-3 bg-slate-50 rounded-2xl"><i data-lucide="file-text" class="text-slate-500"></i></div>
+                    <div class="p-4 bg-white/10 rounded-3xl"><i data-lucide="globe" class="w-8 h-8"></i></div>
                 </div>
+                <div class="bg-slate-800 p-6 rounded-[32px] shadow-lg shadow-slate-200 border-l-8 border-slate-500 flex justify-between items-center text-white">
+                    <div>
+                        <h4 class="text-lg font-black opacity-80 uppercase tracking-widest mb-1">主要目標 (範疇 1+2)</h4>
+                        <div class="flex items-baseline gap-2">
+                            <span id="s12-val" class="text-4xl font-black tracking-tighter">0.000</span>
+                            <span class="text-lg font-bold opacity-70">tCO2e</span>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white/10 rounded-3xl"><i data-lucide="target" class="w-8 h-8"></i></div>
+                </div>
+            </div>
+
+            <!-- 分項數據卡片 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <div class="bg-white p-6 rounded-3xl shadow-sm border-l-8 border-red-500 flex justify-between items-start">
                     <div>
-                        <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">範疇一</h4>
-                        <div class="flex items-baseline gap-1"><span id="s1-val" class="text-2xl font-black text-slate-800 tracking-tighter">0.0000</span><span class="text-[10px] font-bold text-slate-400">tCO2e</span></div>
+                        <h4 class="text-lg font-black text-slate-400 uppercase tracking-widest mb-1">範疇一 (直接排放)</h4>
+                        <div class="flex items-baseline gap-1">
+                            <span id="s1-val" class="text-3xl font-black text-slate-800 tracking-tighter">0.0000</span>
+                            <span class="text-[15px] font-bold text-slate-400">tCO2e</span>
+                        </div>
                     </div>
-                    <div class="p-3 bg-slate-50 rounded-2xl"><i data-lucide="truck" class="text-red-500"></i></div>
+                    <div class="p-3 bg-red-50 rounded-2xl"><i data-lucide="truck" class="text-red-500"></i></div>
                 </div>
                 <div class="bg-white p-6 rounded-3xl shadow-sm border-l-8 border-amber-500 flex justify-between items-start">
                     <div>
-                        <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">範疇二</h4>
-                        <div class="flex items-baseline gap-1"><span id="s2-val" class="text-2xl font-black text-slate-800 tracking-tighter">0.0000</span><span class="text-[10px] font-bold text-slate-400">tCO2e</span></div>
+                        <h4 class="text-lg font-black text-slate-400 uppercase tracking-widest mb-1">範疇二 (電力/熱能)</h4>
+                        <div class="flex items-baseline gap-1">
+                            <span id="s2-val" class="text-3xl font-black text-slate-800 tracking-tighter">0.0000</span>
+                            <span class="text-[15px] font-bold text-slate-400">tCO2e</span>
+                        </div>
                     </div>
-                    <div class="p-3 bg-slate-50 rounded-2xl"><i data-lucide="zap" class="text-amber-500"></i></div>
+                    <div class="p-3 bg-amber-50 rounded-2xl"><i data-lucide="zap" class="text-amber-500"></i></div>
                 </div>
                 <div class="bg-white p-6 rounded-3xl shadow-sm border-l-8 border-emerald-500 flex justify-between items-start">
                     <div>
-                        <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">範疇三</h4>
-                        <div class="flex items-baseline gap-1"><span id="s3-val" class="text-2xl font-black text-slate-800 tracking-tighter">0.0000</span><span class="text-[10px] font-bold text-slate-400">tCO2e</span></div>
+                        <h4 class="text-lg font-black text-slate-400 uppercase tracking-widest mb-1">範疇三 (其他間接)</h4>
+                        <div class="flex items-baseline gap-1">
+                            <span id="s3-val" class="text-3xl font-black text-slate-800 tracking-tighter">0.0000</span>
+                            <span class="text-[15px] font-bold text-slate-400">tCO2e</span>
+                        </div>
                     </div>
-                    <div class="p-3 bg-slate-50 rounded-2xl"><i data-lucide="droplets" class="text-emerald-500"></i></div>
+                    <div class="p-3 bg-emerald-50 rounded-2xl"><i data-lucide="droplets" class="text-emerald-500"></i></div>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col min-h-[400px]">
-                    <h3 class="font-black text-slate-700 mb-6 text-sm uppercase tracking-widest border-l-4 border-indigo-600 pl-4">排放結構分析</h3>
+                    <h3 class="font-black text-slate-700 mb-6 text-sm uppercase tracking-widest border-l-4 border-indigo-600 pl-4">排放結構分析 (比例)</h3>
                     <div class="flex-1 relative"><canvas id="pieChart"></canvas></div>
                 </div>
                 <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col min-h-[400px]">
-                    <h3 class="font-black text-slate-700 mb-6 text-sm uppercase tracking-widest border-l-4 border-indigo-600 pl-4">範疇強度對比</h3>
+                    <h3 class="font-black text-slate-700 mb-6 text-sm uppercase tracking-widest border-l-4 border-indigo-600 pl-4">範疇強度對比 (tCO2e)</h3>
                     <div class="flex-1 relative"><canvas id="barChart"></canvas></div>
                 </div>
             </div>
@@ -175,7 +202,7 @@
                     <table class="w-full text-left">
                         <thead class="bg-slate-50 text-slate-400 text-[10px] font-black uppercase tracking-widest border-b border-slate-100">
                             <tr>
-                                <th class="px-8 py-6">名稱與單位</th>
+                                <th class="px-8 py-6"># 名稱與單位</th>
                                 <th class="px-4 py-6">範疇</th>
                                 <th class="px-4 py-6 text-right">CO2/單一係數</th>
                                 <th class="px-4 py-6 text-right">CH4 係數</th>
@@ -270,8 +297,9 @@
             Object.keys(groups).forEach(key => {
                 const optgroup = document.createElement('optgroup');
                 optgroup.label = groups[key];
-                factors.filter(f => f.category === key).forEach(f => {
-                    const opt = new Option(`${f.name} (${f.unit})`, f.id);
+                factors.filter(f => f.category === key).forEach((f, idx) => {
+                    const factorIdx = factors.findIndex(it => it.id === f.id) + 1;
+                    const opt = new Option(`${factorIdx}. ${f.name} (${f.unit})`, f.id);
                     optgroup.appendChild(opt);
                 });
                 select.appendChild(optgroup);
@@ -280,14 +308,22 @@
 
         function renderFactors() {
             const body = document.getElementById('factors-body');
-            body.innerHTML = factors.map(f => {
+            body.innerHTML = factors.map((f, idx) => {
                 let total = f.type === 'fuel' ? (f.co2 + f.ch4*27 + f.n2o*273) : 
                             f.type === 'refrigerant' ? (f.escapeRate * f.gwp) :
                             f.type === 'ch4_only' ? (f.ch4_factor * 27) : f.factor || f.co2;
 
                 return `
                     <tr class="hover:bg-slate-50 transition-colors">
-                        <td class="px-8 py-5 font-bold text-slate-700">${f.name}<div class="text-[9px] text-slate-400 font-bold tracking-tighter uppercase">${f.unit}</div></td>
+                        <td class="px-8 py-5 font-bold text-slate-700">
+                            <div class="flex items-start gap-3">
+                                <span class="bg-slate-100 text-slate-400 w-6 h-6 rounded flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">${idx + 1}</span>
+                                <div>
+                                    ${f.name}
+                                    <div class="text-[9px] text-slate-400 font-bold tracking-tighter uppercase">${f.unit}</div>
+                                </div>
+                            </div>
+                        </td>
                         <td class="px-4 py-5"><span class="px-2 py-0.5 rounded text-[9px] font-black uppercase ${f.category === '範疇1' ? 'bg-red-50 text-red-600' : f.category === '範疇2' ? 'bg-amber-50 text-amber-600' : 'bg-emerald-50 text-emerald-600'}">${f.category}</span></td>
                         <td class="px-4 py-5 text-right">
                             <input type="number" onchange="updateF('${f.id}','${f.type === 'single' ? 'factor' : 'co2'}',this.value)" value="${f.factor || f.co2 || 0}" step="any" class="w-20 text-right bg-transparent border-b border-transparent focus:border-indigo-500 hover:bg-white p-1 rounded">
@@ -337,8 +373,12 @@
                 else s3 += emission;
             });
 
+            const s12 = s1 + s2;
             const total = s1 + s2 + s3;
+
+            // 更新儀表板統計值
             document.getElementById('total-val').innerText = total.toFixed(3);
+            document.getElementById('s12-val').innerText = s12.toFixed(3);
             document.getElementById('s1-val').innerText = s1.toFixed(4);
             document.getElementById('s2-val').innerText = s2.toFixed(4);
             document.getElementById('s3-val').innerText = s3.toFixed(4);
@@ -385,15 +425,24 @@
                     </div>
                     <table class="w-full text-left text-xs">
                         <thead class="bg-slate-50 text-slate-400 font-black uppercase tracking-widest border-b">
-                            <tr><th class="px-10 py-4">日期</th><th class="px-6 py-4">項目</th><th class="px-6 py-4 text-right">數量</th><th class="px-6 py-4 text-right">當量 (tCO2e)</th><th class="px-10 py-4 text-right">操作</th></tr>
+                            <tr>
+                                <th class="px-10 py-4"># 日期</th>
+                                <th class="px-6 py-4">項目</th>
+                                <th class="px-6 py-4 text-right">數量</th>
+                                <th class="px-6 py-4 text-right">當量 (tCO2e)</th>
+                                <th class="px-10 py-4 text-right">操作</th>
+                            </tr>
                         </thead>
-                        <tbody class="divide-y">${data.map(r => {
+                        <tbody class="divide-y">${data.map((r, idx) => {
                             const f = factors.find(it => it.id === r.sourceId);
                             if (!f) return '';
                             return `<tr>
-                                <td class="px-10 py-4 font-bold">${r.date}</td>
-                                <td class="px-6 py-4">${f.name}</td>
-                                <td class="px-6 py-4 text-right font-mono">${r.value} ${f.unit}</td>
+                                <td class="px-10 py-4 font-bold flex items-center gap-2">
+                                    <span class="bg-slate-100 text-slate-400 px-1.5 py-0.5 rounded text-[10px]">${idx + 1}</span>
+                                    ${r.date}
+                                </td>
+                                <td class="px-6 py-4 font-medium text-slate-600">${f.name}</td>
+                                <td class="px-6 py-4 text-right font-mono text-slate-500">${r.value} ${f.unit}</td>
                                 <td class="px-6 py-4 text-right font-mono font-black text-indigo-600">${calculateEmission(r).toFixed(4)}</td>
                                 <td class="px-10 py-4 text-right">${showDelete ? `<button onclick="deleteRecord(${r.id})" class="text-red-400 hover:text-red-600"><i data-lucide="trash-2" class="w-4 h-4"></i></button>` : r.note || ''}</td>
                             </tr>`;
@@ -441,7 +490,7 @@
         }
 
         function downloadTemplate() {
-            const data = factors.map(f => ({ 'ID(勿改)': f.id, '項目名稱': f.name, '單位': f.unit, '範疇': f.category, '數量 (請填寫)': '' }));
+            const data = factors.map((f, idx) => ({ 'ID(勿改)': f.id, '順序': idx + 1, '項目名稱': f.name, '單位': f.unit, '範疇': f.category, '數量 (請填寫)': '' }));
             const ws = XLSX.utils.json_to_sheet(data);
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, "Template");
@@ -477,7 +526,6 @@
             reader.readAsArrayBuffer(file);
         }
 
-        // --- 修正匯出報告功能：完全遵循 Inventory_Report.csv 結構 ---
         function exportToExcel() {
             if (records.length === 0) return triggerToast('無數據可匯出');
             
@@ -485,7 +533,6 @@
                 const f = factors.find(it => it.id === r.sourceId);
                 const emission = calculateEmission(r);
                 
-                // 根據上傳檔案結構分配數值
                 const co2_sum = (f.type === 'single' || f.type === 'fuel' || f.type === 'direct_co2') ? (r.value * (f.co2 || f.factor || 0)) : 0;
                 const ch4_sum = (f.type === 'fuel') ? (r.value * f.ch4 * 27) : (f.type === 'ch4_only' ? r.value * f.ch4_factor * 27 : 0);
                 const n2o_sum = (f.type === 'fuel') ? (r.value * f.n2o * 273) : 0;
@@ -518,7 +565,6 @@
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, "Inventory_Report");
             
-            // 下載檔案
             XLSX.writeFile(wb, `大量科技排放匯出報告.xlsx`);
             triggerToast('標準格式報告匯出成功');
         }
